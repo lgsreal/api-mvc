@@ -1,10 +1,10 @@
 package br.com.fiap.api_mvc.model;
 
 public enum Categoria {
-    ROMANCE("Romance"),
-    FICCAO("Ficção"),
-    FANTASIA("Fantasia"),
-    BIOGRAFIA("Biografia");
+    ROMANCE("Categoria Romance"),
+    FICCAO("Categoria Ficção"),
+    FANTASIA("Categoria Fantasia"),
+    BIOGRAFIA("Categoria Biografia");
 
     private String descricao;
 
