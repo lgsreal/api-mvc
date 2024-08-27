@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LivroService {
+    // Métodos Mapper
     public Livro requestToLivro(LivroRequest livroRequest) {
         Livro livro = new Livro();
         livro.setNome(livroRequest.getNome());

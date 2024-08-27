@@ -1,0 +1,33 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="pt-BR"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Livros</title>
+</head>
+<body>
+  <h1>Lista de Livros Cadastrados</h1>
+  <br/>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Categoria</th>
+        <th>Autoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="livro : ${listaLivros}">
+        <td th:text="${livro.getId()}">ID</td>
+        <td th:text="${livro.getNome()}">Nome</td>
+        <td th:text="${livro.getPreco()}">Preço</td>
+        <td th:text="${livro.getCategoria()}"> Categoria</td>
+        <td th:text="${livro.getAutoria()}">Autoria</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

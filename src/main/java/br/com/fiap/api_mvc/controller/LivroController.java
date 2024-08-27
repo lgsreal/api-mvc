@@ -5,6 +5,7 @@ import br.com.fiap.api_mvc.dto.LivroResponse;
 import br.com.fiap.api_mvc.model.Livro;
 import br.com.fiap.api_mvc.repository.LivroRepository;
 import br.com.fiap.api_mvc.service.LivroService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +26,14 @@ public class LivroController {
     @Autowired
     private LivroService livroService;
 
+    // Verbos HTTP
+    // POST, GET, PUT, DELETE
+    // CRUD
+    // CREAT, READ, UPDATE, DELETE
+
     // CRUD
     @PostMapping
-    public ResponseEntity<LivroResponse> create(@RequestBody LivroRequest livroRequest) {
+    public ResponseEntity<LivroResponse> create(@Valid @RequestBody LivroRequest livroRequest) {
         Livro livroConvertido = livroService.requestToLivro(livroRequest);
         Livro livroPersistido = livroRepository.save(livroConvertido);
         LivroResponse livroResponse = livroService.livroToResponse(livroPersistido);
@@ -57,13 +63,17 @@ public class LivroController {
         Optional<Livro> livro = livroRepository.findById(id);
         if (livro.isPresent()) {
             LivroResponse livroResponse = livroService.livroToResponse(livro.get());
+            livroResponse.setLink(
+                    linkTo(
+                            methodOn(LivroController.class)
+                                    .read()).withRel("Lista de Livros"));
             return new ResponseEntity<>(livroResponse, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     // /livros/1
     @PutMapping("/{id}")
-    public ResponseEntity<LivroResponse> update(@PathVariable Long id, @RequestBody LivroRequest livroRequest) {
+    public ResponseEntity<LivroResponse> update(@PathVariable Long id, @Valid @RequestBody LivroRequest livroRequest) {
         Optional<Livro> livroPersistido = livroRepository.findById(id);
         if (livroPersistido.isPresent()) {
             Livro livro = livroService.requestToLivro(livroRequest);
