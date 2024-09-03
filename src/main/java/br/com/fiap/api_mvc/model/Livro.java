@@ -1,9 +1,8 @@
 package br.com.fiap.api_mvc.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-
 import java.math.BigDecimal;
+
 @Entity
 @Table(name = "tb_livro")
 public class Livro {

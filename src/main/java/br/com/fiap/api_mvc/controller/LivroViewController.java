@@ -30,4 +30,22 @@ public class LivroViewController {
         mv.addObject("listaLivros", listaLivrosResponse);
         return mv;
     }
+
+    @GetMapping("/template")
+    public String template() {
+        return "template";
+    }
+
+    @GetMapping("/listaLivrosTemplate")
+    public ModelAndView listaLivrosTemplate() {
+        List<Livro> listaLivros = livroRepository.findAll();
+        List<LivroResponse> listaLivrosResponse = new ArrayList<>();
+        for (Livro livro : listaLivros) {
+            listaLivrosResponse.add(livroService.livroToResponse(livro));
+        }
+        ModelAndView mv = new ModelAndView("template");
+        mv.addObject("listaLivros", listaLivrosResponse);
+        return mv;
+    }
+
 }

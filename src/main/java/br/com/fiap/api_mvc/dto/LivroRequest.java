@@ -1,9 +1,6 @@
 package br.com.fiap.api_mvc.dto;
 
 import br.com.fiap.api_mvc.model.Categoria;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
