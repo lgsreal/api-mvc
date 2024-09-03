@@ -4,10 +4,7 @@ import br.com.fiap.api_mvc.model.Categoria;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 
@@ -21,6 +18,8 @@ public class LivroRequest {
     @Size(min = 4, message = "O nome do autor deve ter no mínimo 3 caracteres")
     @NotBlank(message = "O nome do(a) autor(a) não deve estar em branco")
     private String autoria;
+    @Pattern(regexp = "^\\d{13}$", message = "O ISBN deve ter 13 dígitos")
+    private String isbn13;
 
     public String getNome() {
         return nome;
@@ -54,4 +53,11 @@ public class LivroRequest {
         this.autoria = autoria;
     }
 
+    public String getIsbn13() {
+        return isbn13;
+    }
+
+    public void setIsbn13(String isbn13) {
+        this.isbn13 = isbn13;
+    }
 }

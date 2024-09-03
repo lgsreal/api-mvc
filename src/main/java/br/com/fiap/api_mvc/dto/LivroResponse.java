@@ -10,6 +10,7 @@ public class LivroResponse {
     private BigDecimal preco;
     private String categoria;
     private String autoria;
+    private String isbn13;
     private Link link;
 
     public Long getId() {
@@ -50,6 +51,14 @@ public class LivroResponse {
 
     public void setAutoria(String autoria) {
         this.autoria = autoria;
+    }
+
+    public String getIsbn13() {
+        return isbn13;
+    }
+
+    public void setIsbn13(String isbn13) {
+        this.isbn13 = isbn13;
     }
 
     public Link getLink() {

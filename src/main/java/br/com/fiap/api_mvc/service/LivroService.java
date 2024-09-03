@@ -14,6 +14,7 @@ public class LivroService {
         livro.setCategoria(livroRequest.getCategoria());
         livro.setPreco(livroRequest.getPreco());
         livro.setAutoria(livroRequest.getAutoria());
+        livro.setIsbn13(livroRequest.getIsbn13());
         return livro;
     }
 
@@ -24,6 +25,7 @@ public class LivroService {
         livroResponse.setPreco(livro.getPreco());
         livroResponse.setCategoria(livro.getCategoria().getDescricao());
         livroResponse.setAutoria(livro.getAutoria());
+        livroResponse.setIsbn13(livro.getIsbn13());
         return livroResponse;
     }
 }
