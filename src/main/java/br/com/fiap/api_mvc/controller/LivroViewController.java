@@ -7,7 +7,11 @@ import br.com.fiap.api_mvc.repository.LivroRepository;
 import br.com.fiap.api_mvc.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -52,8 +56,19 @@ public class LivroViewController {
     }
 
     @GetMapping("/cadastroLivro")
-    public String cadastroLivro() {
-        return "livroCadastro";
+    public ModelAndView cadastroLivro() {
+        ModelAndView mv = new ModelAndView("template");
+        mv.addObject("page", "livroCadastro");
+        mv.addObject("content", "formCadastro");
+        mv.addObject("livroRequest", new LivroRequest());
+        return mv;
+    }
+
+    @RequestMapping(value = "cadastrarLivro", method = RequestMethod.POST)
+    public ModelAndView cadastrarLivro(@ModelAttribute LivroRequest livroRequest) {
+        Livro livro = livroService.requestToLivro(livroRequest);
+        livroRepository.save(livro);
+        return listaLivrosTemplate();
     }
 
 }

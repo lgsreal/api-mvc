@@ -7,44 +7,43 @@
     <title>Livros</title>
 </head>
 <body>
-<form method="post" th:action="@{/listaLivroTemplate}" th:object="${livroRequest}">
-<div th:fragment="listaLivros">
-  <h1>Cadastro de Livro</h1>
+<div th:fragment="formCadastro">
+  <form method="post" th:action="@{cadastrarLivro}" th:object="${livroRequest}">
+  <h2>Cadastro de Livro</h2>
   <br/>
   <table>
-    <tbody>
       <tr>
         <td>Nome:</td>
-        <td><input type="text" size="50"></td>
+        <td><input type="text" size="50" th:field="*{nome}"></td>
       </tr>
       <tr>
         <td>Preço:</td>
-        <td><input type="text" size="20"></td>
+        <td><input type="text" size="20" th:field="*{preco}"></td>
       </tr>
       <tr>
         <td>Categoria:</td>
         <td>
-          <select name="Categoria">
-            <option name="ROMANCE" value="Romance">Romance</option>
-            <option name="BIOGRAFIA" value="Biografia">Biografia</option>
-            <option name="FICCAO" value="Ficção">Ficção</option>
+          <select name="Categoria" th:field="*{categoria}">
+            <option name="ROMANCE" value="ROMANCE">Romance</option>
+            <option name="FICCAO" value="FICCAO">Ficção</option>
+            <option name="FANTASIA" value="FANTASIA">Fantasia</option>
+            <option name="BIOGRAFIA" value="BIOGRAFIA">Biografia</option>
           </select>
         </td>
       </tr>
       <tr>
         <td>Autoria:</td>
-        <td><input type="text" size="50"></td>
+        <td><input type="text" size="50" th:field="*{autoria}"></td>
       </tr>
       <tr>
         <td>ISBN13:</td>
-        <td><input type="text" size="50"></td>
+        <td><input type="text" size="50" th:field="*{isbn13}"></td>
       </tr>
       <tr>
-        <td colspan="2"><button>Gravar</button></td>
+        <td colspan="2"><input type="submit" value="Gravar"></td>
       </tr>
-    </tbody>
   </table>
+  </form>
 </div>
-</form>
 </body>
 </html>
