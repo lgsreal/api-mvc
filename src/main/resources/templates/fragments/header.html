@@ -7,6 +7,11 @@
 <body>
   <div th:fragment="header">
     <h1>Conteúdo do Cabeçalho</h1>
+      <a href="/template" th:href="@{/template}">Início</a>
+      <span> | </span>
+      <a href="/listaLivrosTemplate" th:href="@{/listaLivrosTemplate}">Lista de Livros</a>
+      <span> | </span>
+      <a href="/cadastroLivro" th:href="@{/cadastroLivro}">Cadastrar Livro</a>
     <hr />
   </div>
 </body>

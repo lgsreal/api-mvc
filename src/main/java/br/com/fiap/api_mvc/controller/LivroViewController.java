@@ -1,12 +1,13 @@
 package br.com.fiap.api_mvc.controller;
 
+import br.com.fiap.api_mvc.dto.LivroRequest;
 import br.com.fiap.api_mvc.dto.LivroResponse;
 import br.com.fiap.api_mvc.model.Livro;
 import br.com.fiap.api_mvc.repository.LivroRepository;
 import br.com.fiap.api_mvc.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class LivroViewController {
 
     @GetMapping("/template")
     public String template() {
-        return "template";
+        return "templateVazio";
     }
 
     @GetMapping("/listaLivrosTemplate")
@@ -44,8 +45,15 @@ public class LivroViewController {
             listaLivrosResponse.add(livroService.livroToResponse(livro));
         }
         ModelAndView mv = new ModelAndView("template");
+        mv.addObject("page", "livros");
+        mv.addObject("content", "listaLivros");
         mv.addObject("listaLivros", listaLivrosResponse);
         return mv;
+    }
+
+    @GetMapping("/cadastroLivro")
+    public String cadastroLivro() {
+        return "livroCadastro";
     }
 
 }

@@ -6,7 +6,7 @@
 </head>
 <body>
     <div th:replace="~{fragments/header :: header}"></div>
-    <div th:replace="~{livros :: listaLivros}"></div>
+    <div th:insert="${page} :: ${content}"></div>
     <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
