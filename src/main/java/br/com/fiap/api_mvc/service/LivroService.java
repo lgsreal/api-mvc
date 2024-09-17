@@ -28,4 +28,14 @@ public class LivroService {
         livroResponse.setIsbn13(livro.getIsbn13());
         return livroResponse;
     }
+
+    public LivroRequest livroToRequest(Livro livro) {
+        LivroRequest livroRequest = new LivroRequest();
+        livroRequest.setNome(livro.getNome());
+        livroRequest.setPreco(livro.getPreco());
+        livroRequest.setCategoria(livro.getCategoria());
+        livroRequest.setAutoria(livro.getAutoria());
+        livroRequest.setIsbn13(livro.getIsbn13());
+        return livroRequest;
+    }
 }

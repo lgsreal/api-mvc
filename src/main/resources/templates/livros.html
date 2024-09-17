@@ -18,16 +18,22 @@
         <th>Preço</th>
         <th>Categoria</th>
         <th>Autoria</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
       <tr th:each="livro : ${listaLivros}">
-        <td th:text="${livro.getId()}">ID</td>
-        <td th:text="${livro.getNome()}">Nome</td>
-        <td th:text="${livro.getPreco()}">Preço</td>
-        <td th:text="${livro.getCategoria()}"> Categoria</td>
-        <td th:text="${livro.getAutoria()}">Autoria</td>
-        <td th:text="${livro.getIsbn13()}">ISBN13</td>
+        <td th:text="${livro.id}">ID</td>
+        <td th:text="${livro.nome}">Nome</td>
+        <td th:text="${livro.preco}">Preço</td>
+        <td th:text="${livro.categoria}"> Categoria</td>
+        <td th:text="${livro.autoria}">Autoria</td>
+        <td th:text="${livro.isbn13}">ISBN13</td>
+        <td>
+          <a th:href="@{/editaLivro/{id}(id = ${livro.id})}">Editar</a>
+          <span> | </span>
+          <a th:href="@{/deletarLivro/{id}(id = ${livro.id})}">Excluir</a>
+        </td>
       </tr>
     </tbody>
   </table>
