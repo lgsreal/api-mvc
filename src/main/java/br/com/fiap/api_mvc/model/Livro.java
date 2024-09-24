@@ -2,6 +2,7 @@ package br.com.fiap.api_mvc.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_livro")
@@ -20,6 +21,8 @@ public class Livro {
     private String autoria;
     @Column(name = "isbn13")
     private String isbn13;
+    @ManyToMany(mappedBy = "livros")
+    private List<Prateleira> prateleiras;
 
     public Long getId() {
         return id;
