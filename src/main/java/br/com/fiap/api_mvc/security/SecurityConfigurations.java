@@ -8,7 +8,10 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -22,11 +25,16 @@ public class SecurityConfigurations {
                 // não armazena sessão do usuário
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        // libera o POST de /auth/login para todos
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        // libera o POST de /auth/register para todos
+                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         // restringe a criação (POST) de livros apenas a usuários ADMIN
                         .requestMatchers(HttpMethod.POST, "/livros").hasRole("ADMIN")
                         // libera todos os outros métodos da API para qualquer usuário AUTENTICADO
                         .anyRequest().authenticated()
                 )
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
@@ -34,4 +42,9 @@ public class SecurityConfigurations {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    } // para trabalhar com hash de senha
 }
